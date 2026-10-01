@@ -1,7 +1,7 @@
 import React from 'react';
 import { CricketMatch, Language } from '../types/cricket';
 import { t } from '../utils/translations';
-import { Play, Pause, FastForward, Volume2, VolumeX, Sparkles, MapPin, CloudSun, ShieldAlert } from 'lucide-react';
+import { Play, Pause, FastForward, Volume2, VolumeX, Sparkles, MapPin, CloudSun, ShieldAlert, RefreshCw } from 'lucide-react';
 
 interface FeaturedLiveMatchProps {
   match: CricketMatch;
@@ -14,6 +14,10 @@ interface FeaturedLiveMatchProps {
   onToggleSound: () => void;
   onNextBall: () => void;
   onOpenAnalysis: () => void;
+  isGoogleTrendingLive?: boolean;
+  isGoogleFetching?: boolean;
+  lastGoogleSyncTime?: string | null;
+  onRefreshGoogle?: () => void;
 }
 
 export const FeaturedLiveMatch: React.FC<FeaturedLiveMatchProps> = ({
@@ -27,6 +31,10 @@ export const FeaturedLiveMatch: React.FC<FeaturedLiveMatchProps> = ({
   onToggleSound,
   onNextBall,
   onOpenAnalysis,
+  isGoogleTrendingLive,
+  isGoogleFetching,
+  lastGoogleSyncTime,
+  onRefreshGoogle,
 }) => {
   const tr = t[lang];
   const inn1 = match.innings1;
@@ -67,12 +75,41 @@ export const FeaturedLiveMatch: React.FC<FeaturedLiveMatchProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Google Trending Live Badge */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>{tr.googleTrendingLive}</span>
+          </div>
+
+          {/* Google Refresh Button */}
+          {onRefreshGoogle && (
+            <button
+              onClick={onRefreshGoogle}
+              disabled={isGoogleFetching}
+              title={tr.refreshGoogle}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-medium transition-all cursor-pointer disabled:opacity-50"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 text-cyan-400 ${isGoogleFetching ? 'animate-spin' : ''}`} />
+              <span className="hidden sm:inline">
+                {isGoogleFetching ? tr.syncingGoogle : tr.refreshGoogle}
+              </span>
+            </button>
+          )}
+
+          {lastGoogleSyncTime && (
+            <span className="hidden md:inline text-[11px] text-slate-400 font-mono">
+              {tr.lastUpdated}: {lastGoogleSyncTime}
+            </span>
+          )}
+
           {/* Pitch & Weather mini snippet */}
           <div className="hidden lg:flex items-center gap-2 text-xs text-slate-400">
-            <span className="flex items-center gap-1">
-              <CloudSun className="w-3.5 h-3.5 text-amber-400" />
-              <span>{match.weather.tempC}°C {lang === 'ta' ? match.weather.conditionTa : match.weather.condition}</span>
-            </span>
+            {match.weather && (
+              <span className="flex items-center gap-1">
+                <CloudSun className="w-3.5 h-3.5 text-amber-400" />
+                <span>{match.weather.tempC}°C {lang === 'ta' ? match.weather.conditionTa : match.weather.condition}</span>
+              </span>
+            )}
           </div>
 
           <button
@@ -84,6 +121,24 @@ export const FeaturedLiveMatch: React.FC<FeaturedLiveMatchProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Google Search Trending Reason Bar */}
+      {((match as any).trendingGoogleReason || isGoogleTrendingLive) && (
+        <div className="relative z-10 px-5 py-2 bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-slate-950/60 border-b border-emerald-900/40 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 text-emerald-300">
+            <span className="text-sm">🔍</span>
+            <span className="font-medium">
+              {lang === 'ta'
+                ? ((match as any).trendingGoogleReasonTa || 'கூகுள் தேடலில் தற்போது அதிகம் தேடப்படும் கிரிக்கெட் போட்டி')
+                : ((match as any).trendingGoogleReason || 'Top Trending Cricket Match on Google Search Right Now')}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-[11px] text-slate-400">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span>Google Search Grounding (gemini-3.5-flash)</span>
+          </div>
+        </div>
+      )}
 
       {/* Main Scoreboard Arena */}
       <div className="relative z-10 p-5 sm:p-6 lg:p-8">

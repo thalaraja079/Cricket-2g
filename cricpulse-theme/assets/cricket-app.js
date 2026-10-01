@@ -19,42 +19,40 @@
         isSoundEnabled: false,
         audioCtx: null,
 
-        // EXACT MATCH AS SHOWN IN LIVE SCREENSHOT
+        // GOOGLE SEARCH TRENDING #1 LIVE CRICKET MATCH
         liveMatch: {
-            title: 'Asian Games Men • Semi-final · T20 11 of 14',
-            titleTa: 'ஆசிய விளையாட்டுப் போட்டிகள் • அரையிறுதி 1 (T20)',
-            format: 'T20 (13 Overs Match)',
-            team1: { name: 'BAN', fullName: 'Bangladesh (வங்கதேசம்)', score: 111, wickets: 7, overs: 13, balls: 0 },
-            team2: { name: 'PAK', fullName: 'Pakistan (பாகிஸ்தான்)', score: 53, wickets: 3, overs: 6, balls: 0 },
-            target: 112,
-            totalOvers: 13,
-            totalBalls: 78,
+            title: 'Champions Trophy • Super 4 - Match 1 (T20)',
+            titleTa: 'சாம்பியன்ஸ் டிராபி • சூப்பர் 4 - போட்டி 1 (T20)',
+            format: 'T20',
+            isGoogleTrending: true,
+            trendingReason: 'Google Search Trending #1 Worldwide 🔥',
+            trendingReasonTa: 'கூகுள் தேடலில் தற்போது உலகளவில் முதலிடம் பிடித்த கிரிக்கெட் போட்டி 🔥',
+            team1: { name: 'IND', fullName: 'India (இந்தியா)', score: 192, wickets: 5, overs: 20, balls: 0 },
+            team2: { name: 'AUS', fullName: 'Australia (ஆஸ்திரேலியா)', score: 138, wickets: 3, overs: 14, balls: 4 },
+            target: 193,
+            totalOvers: 20,
+            totalBalls: 120,
             batsmen: [
-                { name: 'Khushdil Shah (குஷ்தில் ஷா)', runs: 18, balls: 11, fours: 2, sixes: 1, onStrike: true },
-                { name: 'Qasim Akram (காசிம் அக்ரம்)', runs: 12, balls: 8, fours: 1, sixes: 0, onStrike: false }
+                { name: 'Travis Head (டிராவிஸ் ஹெட்)', runs: 62, balls: 38, fours: 7, sixes: 2, onStrike: true },
+                { name: 'Glenn Maxwell (கிளென் மேக்ஸ்வெல்)', runs: 28, balls: 16, fours: 3, sixes: 1, onStrike: false }
             ],
-            bowler: { name: 'Rishad Hossain (ரிஷாத் ஹொசைன்)', overs: 2.0, maidens: 0, runs: 16, wickets: 1 },
-            recentBalls: ['1', '4', '0', '1', '2', 'W', '1', '6', '1', '0'],
+            bowler: { name: 'Jasprit Bumrah (ஜஸ்பிரித் பும்ரா)', overs: 3.4, maidens: 0, runs: 24, wickets: 2 },
+            recentBalls: ['4', '1', '0', '6', '1', 'W', '2', '4', '1', '1'],
             commentary: [
                 {
-                    over: '6.0',
-                    en: 'End of over 6. PAK 53/3. PAK need 59 runs in 42 balls to win. CRR: 8.83, RRR: 8.43.',
-                    ta: '6வது ஓவர் முடிவில் பாகிஸ்தான் 53/3. பாகிஸ்தான் வெற்றிக்கு 42 பந்துகளில் 59 ரன்கள் தேவை.'
+                    over: '14.4',
+                    en: 'FOUR! Glorious cover drive by Travis Head! AUS 138/3, need 55 runs in 32 balls.',
+                    ta: 'அபாரமான பவுண்டரி! டிராவிஸ் ஹெட் கவர் திசையில் பவுண்டரி அடித்தார்! ஆஸ்திரேலியா 138/3, வெற்றிக்கு 32 பந்துகளில் 55 ரன்கள் தேவை.'
                 },
                 {
-                    over: '5.6',
-                    en: '1 run. Driven through the off-side to retain the strike.',
-                    ta: '1 ரன். ஆஃப் சைடில் தட்டிவிட்டு ஸ்ட்ரைக்கை தக்கவைத்துக் கொண்டார்.'
+                    over: '14.3',
+                    en: '1 run. Pushed to deep mid-wicket for a single.',
+                    ta: '1 ரன். மிட் விக்கெட் திசையில் தட்டிவிட்டு ஒரு ரன் ஓடினர்.'
                 },
                 {
-                    over: '5.5',
-                    en: 'SIX! Clean strike! Smashed high and deep over long-on fence!',
-                    ta: 'சிக்ஸர்! தூக்கி அடிக்கப்பட்ட பந்து லாங்-ஆன் எல்லைக்கு வெளியே சிக்ஸரானது!'
-                },
-                {
-                    over: '5.4',
-                    en: 'WICKET! Caught at mid-off! Big breakthrough for Bangladesh!',
-                    ta: 'விக்கெட்! மிட்-ஆஃப்பில் கேட்ச் கொடுத்து அவுட்டானார் பேட்ஸ்மேன்!'
+                    over: '14.2',
+                    en: 'Dot ball. Good yorker length from Bumrah.',
+                    ta: 'டாட் பால். பும்ராவின் துல்லியமான யார்க்கர் பந்து.'
                 }
             ]
         },

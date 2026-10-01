@@ -42,9 +42,16 @@ export const LiveMatchesTicker: React.FC<LiveMatchesTickerProps> = ({
             >
               {/* Tournament tag */}
               <div className="flex flex-col">
-                <span className="text-[10px] text-slate-400 font-medium">
-                  {m.tournament}
-                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] text-slate-400 font-medium">
+                    {m.tournament}
+                  </span>
+                  {(m.id === 'google-trending-live' || (m as any).trendingGoogleReason) && (
+                    <span className="px-1.5 py-0.2 rounded text-[9px] bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40">
+                      🔥 Google #1
+                    </span>
+                  )}
+                </div>
                 <span className="text-[11px] text-slate-300 font-semibold">
                   {m.matchNumber}
                 </span>

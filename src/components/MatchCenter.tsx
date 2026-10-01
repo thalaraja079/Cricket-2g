@@ -10,7 +10,7 @@ interface MatchCenterProps {
 
 export const MatchCenter: React.FC<MatchCenterProps> = ({ match, lang }) => {
   const [activeTab, setActiveTab] = useState<'commentary' | 'scorecard' | 'charts' | 'lineups' | 'pitch'>('commentary');
-  const [selectedInnings, setSelectedInnings] = useState<1 | 2>(match.currentInningsNumber || 2);
+  const [selectedInnings, setSelectedInnings] = useState<1 | 2>(match.currentInningsNumber === 1 ? 1 : 2);
   const tr = t[lang];
 
   const currentInningsData = selectedInnings === 1 ? match.innings1 : (match.innings2 || match.innings1);
@@ -473,11 +473,11 @@ export const MatchCenter: React.FC<MatchCenterProps> = ({ match, lang }) => {
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <div className="p-2 rounded bg-slate-900">
                   <span className="text-slate-400">Temperature</span>
-                  <div className="font-bold text-white font-mono text-sm mt-0.5">{match.weather.tempC}°C</div>
+                  <div className="font-bold text-white font-mono text-sm mt-0.5">{match.weather?.tempC || 27}°C</div>
                 </div>
                 <div className="p-2 rounded bg-slate-900">
                   <span className="text-slate-400">Rain Chance</span>
-                  <div className="font-bold text-emerald-400 font-mono text-sm mt-0.5">{match.weather.rainChance}%</div>
+                  <div className="font-bold text-emerald-400 font-mono text-sm mt-0.5">{match.weather?.rainChance || 0}%</div>
                 </div>
                 <div className="p-2 rounded bg-slate-900">
                   <span className="text-slate-400">Avg 1st Inn Score</span>

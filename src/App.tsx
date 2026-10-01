@@ -13,6 +13,7 @@ import { LiveEventToast } from './components/LiveEventToast';
 import { AiMatchAnalysisModal } from './components/AiMatchAnalysisModal';
 import { WordPressEmbedModal } from './components/WordPressEmbedModal';
 import { PushNotificationBanner } from './components/PushNotificationBanner';
+import { WordPressArticlesSection } from './components/WordPressArticlesSection';
 import { Footer } from './components/Footer';
 
 export default function App() {
@@ -38,6 +39,11 @@ export default function App() {
     advanceOneBall,
     banner,
     dismissBanner,
+    isGoogleTrendingLive,
+    isGoogleFetching,
+    googleFetchError,
+    lastGoogleSyncTime,
+    refreshGoogleTrending,
   } = useLiveScoreEngine(lang);
 
   const toggleLanguage = () => {
@@ -116,12 +122,19 @@ export default function App() {
               onToggleSound={toggleSound}
               onNextBall={advanceOneBall}
               onOpenAnalysis={() => setIsAnalysisModalOpen(true)}
+              isGoogleTrendingLive={isGoogleTrendingLive}
+              isGoogleFetching={isGoogleFetching}
+              lastGoogleSyncTime={lastGoogleSyncTime}
+              onRefreshGoogle={() => refreshGoogleTrending(true)}
             />
 
             <MatchCenter
               match={activeMatch}
               lang={lang}
             />
+
+            {/* WordPress Articles & News Section matching user website layout */}
+            <WordPressArticlesSection lang={lang} />
           </div>
         )}
 
